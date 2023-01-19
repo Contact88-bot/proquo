@@ -41,7 +41,7 @@ const AdminNav = () => {
             }}
             trigger={["click"]}
           >
-            <Link onClick={(e) => e.preventDefault()}>
+            <Link to='/' onClick={(e) => e.preventDefault()}>
               <MenuOutlined />
             </Link>
           </Dropdown>

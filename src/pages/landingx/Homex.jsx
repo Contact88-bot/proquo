@@ -27,58 +27,124 @@ const Homex = () => {
     <div className="App">
       <section
         id="nav_and_hero"
-        className="h-screen lg:px-24 overflow-x-hidden bg-black bg-no-repeat bg-cover bg-left-[50%] bg-right-[50%] bg-top-[0] bg-bottom[0]"
+        className="h-screen relative lg:px-24 overflow-x-hidden overflow-y-hidden bg-black bg-no-repeat bg-cover bg-left-[50%] bg-right-[50%] bg-top-[0] bg-bottom[0]"
         style={{
           backgroundImage: "url(/bglanding.png)",
         }}
       >
         <Nav />
-        <section className="overflow-y-hidden">
-          <div className="px-4 py-12 sm:px-6 md:px-6 lg:py-24">
-            <div className="flex flex-col md:flex-row md:flex-wrap overflow-y justify-between items-center mx-auto lg:pl-12 lg:pr-8">
-              <div className="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-6/12 md:mb-0 xl:mt-0">
-                <span className="hidden md:flex mb-8 text-xs font">{""}</span>
-                <h1 className="mb-8 mt-16 md:mt-2 tracking-wide text-2xl w-9/12 md:w-full md:leading-10 lg:tracking-wide lg:pr-40 font-bold text-black lg:text-5xl">
-                  Multi-regulated <br className="md:hidden" />
-                  global broker
-                </h1>
-                <p className="text-sm  mb-8 md:text-base leading-relaxed text-left text-gray-500">
-                  A trusted destination for traders worldwide, Authorized by
-                  FCA, ASIC &amp; FSCA
-                </p>
-                <div className="flex pl-4 flex-wrap w-7/12 md:w-5/12 mt-2 mx-4 text-left justify-between">
-                  <Link className="" to="/public/login">
-                    <button className="border-2 bg-[#FC5C40] px-3 md:px-6 uppercase text-xs font-medium py-2 text-black rounded-md">
-                      Login
-                    </button>
-                  </Link>
-                  <Link to="/public/register">
-                    <button className="border-2 bg-[#FC5C40] bg-slate400 hover:bg-slate-200 focus:bg-slate-400 px-3 md:px-6 uppercase text-xs font-medium py-2 text-black rounded-md">
-                      SignUp
-                    </button>
-                  </Link>
-                </div>
+
+        <div className="px-4 py-12 sm:px-6 md:px-6 lg:py-24">
+          <div className="flex flex-col md:flex-row md:flex-wrap overflow-y justify-between items-center mx-auto lg:pl-12 lg:pr-8">
+            <div className="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-6/12 md:mb-0 xl:mt-0">
+              <span className="hidden md:flex mb-8 text-xs font">{""}</span>
+              <h1 className="mb-8 mt-16 md:mt-2 tracking-wide text-2xl w-9/12 md:w-full md:leading-10 lg:tracking-wide lg:pr-40 font-semibold text-white lg:text-5xl">
+                Multi-regulated <br className="md:hidden" />
+                global financial institution
+              </h1>
+              <p className="text-sm  mb-8 md:text-base leading-relaxed text-left text-gray-500">
+                Generating Tomorrow's Diversifying Return Streams by Challenging
+                Today's Investment Norms. A trusted destination for investors
+                Worldwide; Authorized by FCA, ASIC & FSCA
+              </p>
+              <div className="flex pl-4 flex-wrap w-7/12 md:w-5/12 mt-2 mx-4 text-left justify-between">
+                <Link className="" to="/public/login">
+                  <button className="border-2 border-[#FC5C40] px-3 md:px-6 uppercase text-xs font-medium py-2 text-white rounded-md">
+                    Login
+                  </button>
+                </Link>
+                <Link to="/public/register">
+                  <button className="border-2 border-[#FC5C40] bg-slate400 hover:bg-slate-200 focus:bg-slate-400 px-3 md:px-6 uppercase text-xs font-medium py-2 text-white rounded-md">
+                    SignUp
+                  </button>
+                </Link>
               </div>
-              <div className="w-full lg:max-w-lg lg:w-6/12 rounded-xl">
-                <div>
-                  <div className="relative w-full max-w-lg">
-                    <div className="relative">
-                      <img
-                        className="object-cover object-center mx-auto rounded-lg"
-                        src={landing}
-                        alt="hero"
-                      />
-                    </div>
+            </div>
+            <div className="h-14 w-full lg:max-w-lg lg:w-6/12 rounded-xl">
+              <div>
+                <div className="relatie w-full max-w-lg">
+                  <div className="relatve">
+                    <img
+                      className="object-cover object-center mx-auto rounded-lg"
+                      src={landing}
+                      alt="hero"
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="hidden md:flex justify-around lg:mx-14">
-            <div className="w-66 flex items-center">
-              <div>
-                <img src={alphabet} alt="/alphabet" />
-              </div>
+        </div>
+        <div className="hidden md:flex justify-around lg:mx-14">
+          <div className="w-66 flex items-center">
+            <div>
+              <img src={alphabet} alt="/alphabet" />
+            </div>
+          </div>
+          <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0V0z"></path>
+              <path d="M7 14l5-5 5 5H7z"></path>
+            </svg>
+            <span className="ml-1 default_cursor_cs">12.443</span>
+          </div>
+          <div className="w-66 flex items-center default_cursor_cs">
+            <div>
+              <img
+                src={facebook}
+                alt="facebook"
+                className="default_cursor_cs"
+              />
+            </div>
+            <div class="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                className="default_cursor_cs"
+              >
+                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                <path d="M7 14l5-5 5 5H7z" className="default_cursor_cs"></path>
+              </svg>
+              <span className="ml-1 default_cursor_cs">12.443</span>
+            </div>
+          </div>
+          <div className="w-66 flex items-center default_cursor_cs">
+            <div>
+              <img src={ms} alt="ms" className="default_cursor_cs" />
+            </div>
+            <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                className="default_cursor_cs"
+              >
+                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                <path d="M7 14l5-5 5 5H7z"></path>
+              </svg>
+              <span className="ml-1 default_cursor_cs">12.443</span>
+            </div>
+          </div>
+          <div className="w-66 flex items-center default_cursor_cs">
+            <div>
+              <img src={tesla} alt="tesla" className="default_cursor_cs" />
             </div>
             <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
               <svg
@@ -93,99 +159,31 @@ const Homex = () => {
                 <path fill="none" d="M0 0h24v24H0V0z"></path>
                 <path d="M7 14l5-5 5 5H7z"></path>
               </svg>
-              <span className="ml-1 default_cursor_cs">12.443</span>
-            </div>
-            <div className="w-66 flex items-center default_cursor_cs">
-              <div>
-                <img
-                  src={facebook}
-                  alt="facebook"
-                  className="default_cursor_cs"
-                />
-              </div>
-              <div class="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="default_cursor_cs"
-                >
-                  <path fill="none" d="M0 0h24v24H0V0z"></path>
-                  <path
-                    d="M7 14l5-5 5 5H7z"
-                    className="default_cursor_cs"
-                  ></path>
-                </svg>
-                <span className="ml-1 default_cursor_cs">12.443</span>
-              </div>
-            </div>
-            <div className="w-66 flex items-center default_cursor_cs">
-              <div>
-                <img src={ms} alt="ms" className="default_cursor_cs" />
-              </div>
-              <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="default_cursor_cs"
-                >
-                  <path fill="none" d="M0 0h24v24H0V0z"></path>
-                  <path d="M7 14l5-5 5 5H7z"></path>
-                </svg>
-                <span className="ml-1 default_cursor_cs">12.443</span>
-              </div>
-            </div>
-            <div className="w-66 flex items-center default_cursor_cs">
-              <div>
-                <img src={tesla} alt="tesla" className="default_cursor_cs" />
-              </div>
-              <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4 default_cursor_cs">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path fill="none" d="M0 0h24v24H0V0z"></path>
-                  <path d="M7 14l5-5 5 5H7z"></path>
-                </svg>
-                <span className="ml-1">12.443</span>
-              </div>
-            </div>
-            <div className="w-66 flex items-center">
-              <div>
-                <img src={amazon} alt="amazon" />
-              </div>
-              <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  stroke-width="0"
-                  viewBox="0 0 24 24"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path fill="none" d="M0 0h24v24H0V0z"></path>
-                  <path d="M7 14l5-5 5 5H7z"></path>
-                </svg>
-                <span className="ml-1">12.443</span>
-              </div>
+              <span className="ml-1">12.443</span>
             </div>
           </div>
-        </section>
+          <div className="w-66 flex items-center">
+            <div>
+              <img src={amazon} alt="amazon" />
+            </div>
+            <div className="flex bg-green-500 text-xs text-slate-800 px-4 py-1 rounded ml-4">
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path fill="none" d="M0 0h24v24H0V0z"></path>
+                <path d="M7 14l5-5 5 5H7z"></path>
+              </svg>
+              <span className="ml-1">12.443</span>
+            </div>
+          </div>
+        </div>
+
         <div className="absolute bottom-0 left-0 z-10 w-full">
           <Widget />
         </div>

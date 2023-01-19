@@ -1,17 +1,14 @@
-import React,  { useState } from 'react';
-// import useRedirect from "../../../hooks/useRedirect";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import bultpay from "../../../images/bultpay3.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
+import { AiOutlineRollback } from "react-icons/ai";
 
-
-const ConfirmWld = () => {
-  // const showToastMessage = () => {
-  //   toast.success("Success !", {
-  //     position: toast.POSITION.TOP_RIGHT,
-  //   });
-  // };
+const BtcWld = () => {
+  let navigate = useNavigate();
   const user = useSelector((state) => state.auth.user_details);
 
   const { email } = user;
@@ -48,9 +45,9 @@ const ConfirmWld = () => {
 
   const handleWithdrawal = async () => {
     // console.log('first click')
-    if (!withdrawal.amount || !withdrawal.address || !withdrawal.addressType) {
-      return notify("Please provide all information");
-    }
+    // if (!withdrawal.amount || !withdrawal.address || !withdrawal.addressType) {
+    //   return notify("Please provide all information");
+    // }
 
     // if (withdrawal.amount > balance) {
     //   return notify('Insufficient balance');
@@ -80,17 +77,24 @@ const ConfirmWld = () => {
   };
   return (
     <div className="bg-[#f5f6fa] h-screen">
-      <div aria-current="page" class="active" to="/">
-        <img
-          src={bultpay}
-          className="w-28 p-3  lg:w-36 items-center text-center justify-center"
+      <div className="flex">
+        <AiOutlineRollback
+          className="text-blue-300"
+          size={34}
+          onClick={() => {
+            navigate("/user/withdraw");
+          }}
         />
+        <p className="pt-2 font-bold">back</p>
       </div>
+      <Link className="flex justify-center" to="/">
+        <img src={bultpay} className="w-28 p-3  lg:w-36" />
+      </Link>
       <ToastContainer />
       <section class=" md:flex flex-col justify-center font-normal">
         <div class="flex flex-col items-center font-semibold text-2xl px-0 md:px-6 pt-8 h-full">
           <p class="text-lg md:text-3xl text-slate-600 text-center mt-6">
-            Withdraw Funds
+            Withdraw Funds (Btc)
           </p>
           <p class="text-center font-normal text-sm px-2 md:w-1/3 text-slate-600">
             Secure and safely deposit money into your account
@@ -132,5 +136,5 @@ const ConfirmWld = () => {
       </section>
     </div>
   );
-}
-export default ConfirmWld;
+};
+export default BtcWld;

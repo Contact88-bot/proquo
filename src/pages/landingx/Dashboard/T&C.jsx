@@ -7,8 +7,9 @@ const TC = () => {
   return (
     <div className="">
       <Nav />
-      <div className="flex bg-[#1f2b3a]  justify-center text-black">
-        <div className="my-36 bg-white mx-5 rounded-lg p-4">
+      <div className="flex bg-[#1f2b3a]  justify-center text-black px-4 lg:pb-12 lg:px-28">
+        <div className="my-44 bg-white mx-5 rounded-lg p-4">
+          <div className='font-semibold text-lg text-center'>Terms and Conditions</div>
           <div className="py-10 px-5 font-semibold">
             Our Terms of service are as follows:
             <br />
@@ -54,7 +55,7 @@ const TC = () => {
             <span className="text-blue-600">support@zahamax.com</span>
           </div>
           <div className="md:space-x-40 md:flex space-y-5 px-5 md:space-y-0 block">
-          <Link to="/user/dashboard">
+          {/* <Link to="/user/dashboard">
             <button className="btn btn-success px-10 text-gray-300">
               Agree
             </button>
@@ -63,7 +64,7 @@ const TC = () => {
             <button className="btn btn-error px-10 text-gray-300">
               Disagree
             </button>
-          </Link>
+          </Link> */}
         </div>
         </div>
       </div>

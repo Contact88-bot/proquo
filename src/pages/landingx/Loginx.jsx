@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { setUserDetails, setToken } from "../../Redux/action";
 import { useDispatch } from "react-redux";
 // import logo from "../../images/whitebulllogo.png";
@@ -12,6 +12,7 @@ const Loginx = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [userc, setUserc] = useState(null)
   // const [exists, setexists] = useState("");
   const [msg, setMsg] = useState({
     name: "",
@@ -73,9 +74,10 @@ const Loginx = () => {
           }
           dispatch(setToken(token));
           dispatch(setUserDetails(user));
+          setUserc(user)
           // window.location.assign('http://enefti-six.vercel.app/user/dashboard')
           // https://zany-gold-perch-sock.cyclic.app/login
-          navigate("/user/dashboard", { replace: true });
+          // navigate("/user/dashboard", { replace: true });
         }
       })
       .catch((err) => console.log(err));
@@ -85,6 +87,7 @@ const Loginx = () => {
     <div className="px-0 lg:px-0 w-full">
       <div className="flex flex-col bg-[#26313f3a] shadow-md rounded  text-slate-700 items-center h-screen px-3 pt-3  w-full">
         <div className="lg:mx-auto w-full lg:w-10/12 px-3 lg:px-12">
+          {userc && <Navigate to="/user/dashboard" replace={true} />}
           <div className="flex items-center justify-center">
             <span className="flex items-center w-32 lg:w-36 rounded-md text-secondary justify-center mb-6">
               <img

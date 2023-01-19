@@ -4,7 +4,8 @@ import bultpay from "../../../images/bultpay3.png";
 import { setToken, setUserDetails } from "../../../Redux/action";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -124,10 +125,9 @@ const Profile = () => {
                           <span className="text-red-500">*</span>
                         </span>
                         <input
+                          name="name"
                           onChange={onChanges}
-                          // value={newUser.name}
-                          value=""
-                          placeholder="s"
+                          value={newUser.name}
                           type="text"
                           className="border text-gray-400 border-gray-300 p-2 rounded shadow-sm"
                         />
@@ -153,9 +153,10 @@ const Profile = () => {
                           <span className="text-red-500">*</span>
                         </span>
                         <input
-                          onchange={onChanges}
-                          // value={newUser.phone}
-                          placeholder="233-324-2343"
+                          name="phone"
+                          onChange={onChanges}
+                          value={newUser.phone}
+                          type="phone"
                           className="border border-gray-300 p-2 rounded shadow-sm"
                         />
                       </p>
@@ -180,6 +181,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
+          <ToastContainer />
         </div>
       ),
     },

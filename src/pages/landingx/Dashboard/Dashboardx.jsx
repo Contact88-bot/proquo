@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
-import bultpay from "../../../images/bultpay3.png"
+import bultpay from "../../../images/bultpay3.png";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,36 +12,38 @@ const Dashboardx = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const { email } = useSelector((state) => state.auth.user_details);
-  const [user, setUser] = useState({
-    balance: 0,
-    btc: "",
-    deposit: 0,
-    email: "wall@w.com",
-    name: "",
-    phone: "",
-    profits: 0,
-    role: "user",
-    withdrawal: 0,
-  });
-  //console.log({user});
+  const user  = useSelector((state) => state.auth.user_details);
+  // const [user, setUser] = useState({
+  //   balance: 0,
+  //   btc: "",
+  //   deposit: 0,
+  //   email: "",
+  //   name: "",
+  //   phone: "",
+  //   profits: 0,
+  //   role: "user",
+  //   withdrawal: 0,
+  // });
+  console.log({ user });
 
-  useEffect(() => {
-    fetch("https://zany-gold-perch-sock.cyclic.app/get-profile", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-      }),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        const { user } = res;
-        console.log(user);
-        setUser(user);
-      })
-      .catch((err) => console.log("errrrrrrr", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://zany-gold-perch-sock.cyclic.app/get-profile", {
+  //     method: "post",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       email,
+  //     }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((res) => {
+  //       const { user } = res;
+  //       console.log({ res });
+  //       console.log(user);
+  //       // console.log(user);
+  //       setUser(user);
+  //     })
+  //     .catch((err) => console.log("errrrrrrr", err));
+  // }, [email]);
 
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("left");
@@ -594,6 +596,25 @@ const Dashboardx = () => {
                 </div>
                 <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-1/3">
                   <p class="flex justify-between items-center">
+                    <span>Earnings</span>
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      height="15"
+                      width="15"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                      <path d="M11 11h2v6h-2zm0-4h2v2h-2z"></path>
+                    </svg>
+                  </p>
+                  <div class="uppercase text-xs pt-6">This month</div>
+                  <p class="text-2xl font-semibold">${user.profits} USD</p>
+                </div>
+                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-1/3">
+                  <p class="flex justify-between items-center">
                     <span>Total Deposit</span>
                     <svg
                       stroke="currentColor"
@@ -631,12 +652,13 @@ const Dashboardx = () => {
                   <p class="text-2xl font-semibold">${user.withdrawal} USD</p>
                 </div>
               </div>
+
+              <div className="z-10 w-full mt-12">
+                <Widget2 />
+              </div>
             </section>
           </div>
         </div>
-      </div>
-      <div className="z-10 w-full">
-        <Widget2 />
       </div>
     </div>
   );

@@ -78,7 +78,7 @@ const Footer = () => {
                   />
                 </span>
                 <p className="w-1/2 mt-2 text-sm text-whtie">
-                  We have licenses provide services Worldwide.
+                  We have licenses to provide services Worldwide.
                 </p>
               </div>
               <div className="grid md:grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2 text-white">

@@ -222,7 +222,7 @@ const Deposit = () => {
         {' '}
         <button
           class="btn btn-primary btn-square mx-0 md:text-lg text-white flex btn-block bg-secondary mt-6"
-          onClick={onDeposit}
+        onClick={onDeposit}
         >
           I have made payment
         </button>

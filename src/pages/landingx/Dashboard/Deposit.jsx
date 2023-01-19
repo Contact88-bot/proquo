@@ -6,14 +6,14 @@ import { setToken, setUserDetails } from "../../../Redux/action";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import "react-toastify/dist/ReactToastify.css";
-
 
 const Deposit = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
- 
-  const [barcode, setBarcode] = useState("");
+
+  const [barcode, setBarcode] = useState("btc");
   const [amt, setAmt] = useState("");
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("left");
@@ -26,10 +26,10 @@ const Deposit = () => {
   const onChange = (e) => {
     setPlacement(e.target.value);
   };
-  
+
   const onAmtChange = (e) => {
     setAmt(e.target.value);
-  }; 
+  };
 
   const onCoinChange = (e) => {
     const { value } = e.target;
@@ -45,7 +45,8 @@ const Deposit = () => {
       showBank();
     }
   };
-
+  const notifier = () => toast("Copied!");
+  
   const user = useSelector((state) => state.auth.user_details);
 
   const { email } = user;
@@ -62,46 +63,46 @@ const Deposit = () => {
     });
   };
 
-   useEffect(() => {
-     const controller = new AbortController();
-     const signal = controller.signal;
-     fetch("https://zany-gold-perch-sock.cyclic.app/deposit", {
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch("https://zany-gold-perch-sock.cyclic.app/deposit", {
       signal: signal,
-     })
-       .then((response) => response.json())
+    }).then((response) => response.json());
 
-     return () => controller.abort();
-   }, []);
+    return () => controller.abort();
+  }, []);
 
-   const onDeposit = async () => {
-     if (!amt) {
-       return notify("Please provide an amount");
-     }
+  const onDeposit = async () => {
+    if (!amt) {
+      return notify("Please provide an amount");
+    }
 
-     const res = await fetch(
-       "https://zany-gold-perch-sock.cyclic.app/deposit",
-       {
-         method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({ email,  deposit: amt }),
-       }
-     );
+    const res = await fetch("https://zany-gold-perch-sock.cyclic.app/deposit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, deposit: amt }),
+    });
 
-     const result = await res.json();
+    const result = await res.json();
 
-     notify(`${result.msg}`);
-   };
+    notify(`${result.msg}`);
+  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
-    setIsModalOpen(true);
+    if (!amt) {
+      return notify("Enter Amount");
+    } else {
+      setIsModalOpen(true);
+    }
   };
   const handleOk = () => {
     setIsModalOpen(false);
   };
   const handleCancel = () => {
     setIsModalOpen(false);
-  }; 
+  };
   const [openBank, setOpenBank] = useState(false);
   const showBank = () => {
     setOpenBank(true);
@@ -639,20 +640,29 @@ const Deposit = () => {
                         </span>
                       </div>
                       <div class="flex justify-between items-center border-b py-2 border-slate-300 text-sm default_cursor_cs">
-                        <span class="flex text-sm">3782bCuU88...</span>
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          stroke-width="0"
-                          viewBox="0 0 24 24"
-                          class="mt-1 ml-4 text-green-500 hover:text-green-600 bg-pr default_cursor_cs"
-                          height="20"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
+                        <span class="flex text-sm">
+                          {barcode.slice(0, 6)}...
+                        </span>
+                        <CopyToClipboard
+                          text={barcode}
+                          onCopy={() => notify('copied')}
+                          
                         >
-                          <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path>
-                          <path d="M6 12h6v2H6zm0 4h6v2H6z"></path>
-                        </svg>
+                          <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 24 24"
+                            class="mt-1 ml-4 text-green-500 hover:text-green-600 bg-pr default_cursor_cs"
+                            height="20"
+                            width="20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path>
+                            <path d="M6 12h6v2H6zm0 4h6v2H6z"></path>
+                          </svg>
+                        </CopyToClipboard>
+                        
                       </div>
                       <div class="flex justify-between items-center border-b py-2 border-slate-300 text-sm default_cursor_cs">
                         <span>You will send</span>

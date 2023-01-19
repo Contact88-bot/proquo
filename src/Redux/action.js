@@ -4,6 +4,7 @@ import {
   USER_DETAILS,
   LOGOUT,
   SET_ADUSER,
+  SET_DEPOSIT,
 } from "./actionTypes";
 
 export const setWalet = (wallet) => ({
@@ -14,6 +15,11 @@ export const setWalet = (wallet) => ({
 export const setToken = (token) => ({
   type: SET_TOKEN,
   payload: token,
+});
+
+export const setDeposit = (amt) => ({
+  type: SET_DEPOSIT,
+  payload: amt,
 });
 
 export const setUserDetails = (details) => ({

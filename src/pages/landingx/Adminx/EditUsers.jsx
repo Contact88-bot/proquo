@@ -152,6 +152,7 @@ const EditUsers = () => {
         <div class="mb-2 pt-0">
           <label className="text-lg font-semibold">Phone:</label>
           <input
+            disabled
             name="phone"
             onChange={onChange}
             value={user.phone}

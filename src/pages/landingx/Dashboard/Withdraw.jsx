@@ -1,20 +1,65 @@
 import React, { useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
 import logo1 from "../../../images/bultpay3.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setDeposit } from "../../../Redux/action";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Withdraw = () => {
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
+   const [barcode, setBarcode] = useState("");
+   const [amt, setAmt] = useState("");
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("left");
+  const [method, setMethod] = useState("");
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
   };
+  
+  // const onChange = (e) => {
+  //   setPlacement(e.target.value);
+  // };
+
   const onChange = (e) => {
-    setPlacement(e.target.value);
+    const { value } = e.target;
+    console.log({ value, a: barcode });
+
+    
+      setMethod(value);
   };
+
+    const notify = (word) => {
+      toast.info(`${word}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    };
+
+  const onSubmit = () => {
+        dispatch(setDeposit(amt));
+        if (!method) {
+          return notify("Select Method");
+        }
+        
+        if (method == "btc") {
+        navigate("/user/btc/withdrawal", { replace: true });        
+        } else if (method == "Bank") { 
+        navigate("/user/usdc/withdrawal")
+        } else if (method == "Paypal") {
+          //navigate to btc withdrawal page
+        }
+      }
 
   return (
     <div>
@@ -176,7 +221,7 @@ const Withdraw = () => {
         </div>
       </Drawer>
 
-            {/* content */}
+      {/* content */}
       <div className="px-0 lg:px-0 w-full">
         <div className="md:flex relative">
           {/* left section */}
@@ -352,7 +397,7 @@ const Withdraw = () => {
               </div>
             </div>
           </section>
-              {/* withdraw content */}
+          {/* withdraw content */}
           <div className="flex-1 h-screen bg-[#f5f6fa]">
             <div className="pt-2 px-3 flex items-center justify-between border-b border-gray-200 bg-white">
               <div class="bg-green200 p-0 relative -top-1" onClick={showDrawer}>
@@ -382,6 +427,7 @@ const Withdraw = () => {
                 </Link>
               </div>
               <div class="py-1">
+                <ToastContainer />
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-rose-600">
                   <svg
                     stroke="currentColor"
@@ -417,10 +463,10 @@ const Withdraw = () => {
                         <label class="text-sm pb-2 font-semibold">
                           Select withdrawal method:
                         </label>
-                        <select class="py-1.5 rounded border mt-1 border-gray-200 w-full  text-base">
+                        <select onChange={onChange} class="py-1.5 rounded border mt-1 border-gray-200 w-full  text-base">
                           <option value="">Select method</option>
                           <option value="btc">Bitcoin</option>
-                          <option value="Bank"> Bank</option>
+                          {/* <option value="Bank">Bank</option> */}
                           {/* <option value="Skrill"> Skrill</option> */}
                           <option value="Paypal">Paypal</option>
                         </select>
@@ -434,7 +480,7 @@ const Withdraw = () => {
                           class="py-1 px-2 text-base rounded border mt-1 mb-4 border-gray-200 md:w-96"
                         />
                       </p>
-                      <button class="px-3 py-1.5 md:w-72_ md:w-80 lg:w-full md:py-2.5 text-sm bg-red-500 text-white font-medium rounded uppercase mt-3 md:mt-0">
+                      <button onClick={onSubmit} class="px-3 py-1.5 md:w-72_ md:w-80 lg:w-full md:py-2.5 text-sm bg-red-500 text-white font-medium rounded uppercase mt-3 md:mt-0">
                         Continue to withdraw
                       </button>
                     </div>
