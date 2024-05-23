@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
-import bultpay from "../../../images/bultpay3.png";
+import UserIcon from "../../../components/Nav/UserIcon";
 import { setToken, setUserDetails } from "../../../Redux/action";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
@@ -54,7 +54,7 @@ const Profile = () => {
     const { email, name, btc, phone } = user;
 
     const iseditUser = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/users/:id",
+      "https://api.proquoauctions.com/users/:id",
       {
         method: "put",
         headers: { "Content-Type": "application/json" },
@@ -274,10 +274,7 @@ const Profile = () => {
       >
         <div className="w-[93%] pt-6 pl-2.5 default_cursor_cs">
           <p className="flex justify-between py-2">
-            <img
-              src={bultpay}
-              class="w-28 lg:w-36 text-xl font-semibold left-0 whitespace-nowrap text-white"
-            />
+            <UserIcon />
             <svg
               onClick={onClose}
               stroke="currentColor"
@@ -457,12 +454,7 @@ const Profile = () => {
             }}
           >
             <div className="w-[93%] pt-3 pl-2.5">
-              <Link aria-current="page" class="active" to="/">
-                <img
-                  src={bultpay}
-                  class="w-28 lg:w-36 p-3 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                />
-              </Link>
+             <UserIcon />
               <div className="flex items-center justify-between border-y-2 my-2 py-6 px-4 md:hidden">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-blue-600 mr-6">
                   <svg
@@ -669,12 +661,7 @@ const Profile = () => {
                 </span>
               </div>
               <div class="justify-self-center">
-                <Link aria-current="page" class="active" to="/">
-                  <img
-                    src={bultpay}
-                    class="w-28 lg:w-36 p-3 bg-white self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                  />
-                </Link>
+               <UserIcon />
               </div>
               <div class="py-1">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-rose-600">

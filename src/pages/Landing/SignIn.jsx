@@ -72,7 +72,7 @@ const Signin = () => {
           dispatch(setToken(token));
           dispatch(setUserDetails(user));
           // window.location.assign('http://enefti-six.vercel.app/user/dashboard')
-          // https://zany-gold-perch-sock.cyclic.app/login
+          // https://salmon-tuna-coat.cyclic.app/login
           https: navigate("/user/dashboard", { replace: true });
         }
       })

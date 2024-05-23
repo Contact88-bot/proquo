@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
 import bultpay from "../../../images/bultpay3.png";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { setToken, setUserDetails } from "../../../Redux/action";
 import { useDispatch } from "react-redux";
 import Widget2 from "./Widget2";
+import UserIcon from "../../../components/Nav/UserIcon";
 
 const Dashboardx = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
 
-  const user  = useSelector((state) => state.auth.user_details);
+  const user = useSelector((state) => state.auth.user_details);
   // const [user, setUser] = useState({
   //   balance: 0,
   //   btc: "",
@@ -27,7 +27,7 @@ const Dashboardx = () => {
   console.log({ user });
 
   // useEffect(() => {
-  //   fetch("https://zany-gold-perch-sock.cyclic.app/get-profile", {
+  //   fetch("https://api.proquoauctions.com/get-profile", {
   //     method: "post",
   //     headers: { "Content-Type": "application/json" },
   //     body: JSON.stringify({
@@ -68,10 +68,7 @@ const Dashboardx = () => {
       >
         <div className="w-[93%] pt-6 pl-2.5 default_cursor_cs">
           <p className="flex justify-between py-2">
-            <img
-              src={bultpay}
-              class="w-28 lg:w-36 text-xl font-semibold left-0 whitespace-nowrap text-white"
-            />
+            <UserIcon />
             <svg
               onClick={onClose}
               stroke="currentColor"
@@ -253,12 +250,7 @@ const Dashboardx = () => {
             }}
           >
             <div className="w-[93%] pt-3 pl-2.5">
-              <Link aria-current="page" class="active" to="/">
-                <img
-                  src={bultpay}
-                  class="w-28 p-3 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                />
-              </Link>
+              <UserIcon />
               <div className="flex items-center justify-between border-y-2 my-2 py-6 px-4 md:hidden">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-blue-600 mr-6">
                   <svg
@@ -445,7 +437,7 @@ const Dashboardx = () => {
           </section>
 
           {/* Dashboard content */}
-          <div className="flex-1 bg-[#f5f6fa] h-screen">
+          <div className="flex-1 bg-[#f5f6fa]">
             <div className="pt-2 px-3 flex items-center justify-between border-b border-gray-200 bg-white">
               <div class="bg-green200 p-0 relative -top-1" onClick={showDrawer}>
                 <span tabindex="0" class="btn btn-ghost btn-circle  md:hidden">
@@ -466,12 +458,7 @@ const Dashboardx = () => {
                 </span>
               </div>
               <div class="justify-self-center">
-                <a aria-current="page" class="active" to="/">
-                  <img
-                    src={bultpay}
-                    class="w-28 p-3 lg:w-36 bg-white self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                  />
-                </a>
+                <UserIcon />
               </div>
               <div class="py-1">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-rose-600">
@@ -506,46 +493,25 @@ const Dashboardx = () => {
                   Here's a summary of your account. Have fun!
                 </p>
               </div>
-              {/* <div class="flex md:mt-12 flex-col md:flex-row md:items-center justify-between border border-yellow-400 mx-5 px-5 py-5 shadow-lg mt-6">
-                <span class="flex">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 1024 1024"
-                    class="text-yellow-400 mr-3 md:hidden"
-                    height="38"
-                    width="38"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M955.7 856l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zM480 416c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v184c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V416zm32 352a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path>
-                  </svg>
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    stroke-width="0"
-                    viewBox="0 0 1024 1024"
-                    class="text-yellow-400 mr-3 hidden md:flex"
-                    height="24"
-                    width="24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M955.7 856l-416-720c-6.2-10.7-16.9-16-27.7-16s-21.6 5.3-27.7 16l-416 720C56 877.4 71.4 904 96 904h832c24.6 0 40-26.6 27.7-48zM480 416c0-4.4 3.6-8 8-8h48c4.4 0 8 3.6 8 8v184c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V416zm32 352a48.01 48.01 0 0 1 0-96 48.01 48.01 0 0 1 0 96z"></path>
-                  </svg>
-                  <p class="text-sm">
-                    Add an account that you’d like to receive payment or
-                    withdraw fund.
-                  </p>
-                </span>
-                <a
-                  class="px-3 py-1.5 md:py-2.5 text-center text-xs bg-yellow-500 text-white font-medium  rounded uppercase mt-6 md:mt-0"
-                  to="/user/profile"
-                >
-                  Add account
-                </a>
+              {/* <div className="ml-5 my-5">
+                <div>
+                  <p>Our Plans</p>
+                </div>
+                <div className="bg-gray-300 w-64">
+                  <p>5% in 7 Days</p>
+                  <div className="flex">
+                    <div className="flex w-[30px] lg:w-[59px] relative before:w-[2px] before:h-[10px] before:bg-slate-500 before:content-[''] before:absolute before:top-0 before:left-[7px] default_cursor_cs">
+                      <p>Plan</p>
+                      <p className="w-[150px] text-right transform -rotate-90 text-white mt-[64px] ml-[-67px]"></p>
+                    </div>
+
+                    <p>Min($)</p>
+                    <p>Profit(%)</p>
+                  </div>
+                </div>
               </div> */}
-              <div className="md:flex justify-between md:mt-12">
-                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-red-400 md:w-1/3">
+              <div className="md:flex md:flex-wrap md:mt-12">
+                <div class="py-6 px-3  md:w-[300px] shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-red-400 ">
                   <p class="flex justify-between items-center">
                     <div class="tooltip text-black" data-tip="hello">
                       <span>Available Balance</span>
@@ -594,7 +560,7 @@ const Dashboardx = () => {
                     </Link>
                   </p>
                 </div>
-                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-1/3">
+                <div class="py-6 px-3 md:w-[300px] shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 ">
                   <p class="flex justify-between items-center">
                     <span>Earnings</span>
                     <svg
@@ -613,7 +579,26 @@ const Dashboardx = () => {
                   <div class="uppercase text-xs pt-6">This month</div>
                   <p class="text-2xl font-semibold">${user.profits} USD</p>
                 </div>
-                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-1/3">
+                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-[300px]">
+                  <p class="flex justify-between items-center">
+                    <span>Network Fee</span>
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 24 24"
+                      height="15"
+                      width="15"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"></path>
+                      <path d="M11 11h2v6h-2zm0-4h2v2h-2z"></path>
+                    </svg>
+                  </p>
+                  <div class="uppercase text-xs pt-6">This month</div>
+                  <p class="text-2xl font-semibold">${user.fee} USD</p>
+                </div>
+                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-sky-800 md:w-[300px]">
                   <p class="flex justify-between items-center">
                     <span>Total Deposit</span>
                     <svg
@@ -632,7 +617,7 @@ const Dashboardx = () => {
                   <div class="uppercase text-xs pt-6">This month</div>
                   <p class="text-2xl font-semibold">${user.deposit} USD</p>
                 </div>
-                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-yellow-400 md:w-1/3">
+                <div class="py-6 px-3 shadow-lg my-5 mx-5 border border-gray-300 border-b-4 border-b-yellow-400 md:w-[300px]">
                   <p class="flex justify-between items-center">
                     <span>Total Withdrawal</span>
                     <svg
@@ -652,8 +637,7 @@ const Dashboardx = () => {
                   <p class="text-2xl font-semibold">${user.withdrawal} USD</p>
                 </div>
               </div>
-
-              <div className="z-10 w-full mt-12">
+              <div className="z-10 w-full">
                 <Widget2 />
               </div>
             </section>

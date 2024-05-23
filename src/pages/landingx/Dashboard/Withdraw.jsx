@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Drawer, Radio, Space } from "antd";
-import logo1 from "../../../images/bultpay3.png";
+import UserIcon from "../../../components/Nav/UserIcon";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setDeposit } from "../../../Redux/action";
@@ -57,7 +57,7 @@ const Withdraw = () => {
         } else if (method == "Bank") { 
         navigate("/user/usdc/withdrawal")
         } else if (method == "Paypal") {
-          //navigate to btc withdrawal page
+         navigate("/user/paypal/withdrawal");
         }
       }
 
@@ -72,10 +72,7 @@ const Withdraw = () => {
       >
         <div className="w-[93%] pt-6 pl-2.5 default_cursor_cs">
           <p className="flex justify-between py-2">
-            <img
-              src={logo1}
-              class="w-28 lg:w-36 text-xl font-semibold left-0 whitespace-nowrap text-white"
-            />
+            <UserIcon />
             <svg
               onClick={onClose}
               stroke="currentColor"
@@ -232,12 +229,7 @@ const Withdraw = () => {
             }}
           >
             <div className="w-[93%] pt-3 pl-2.5">
-              <Link aria-current="page" class="active" to="/">
-                <img
-                  src={logo1}
-                  class="w-28 p-3 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                />
-              </Link>
+             <UserIcon />
               <div className="flex items-center justify-between border-y-2 my-2 py-6 px-4 md:hidden">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-blue-600 mr-6">
                   <svg
@@ -419,12 +411,7 @@ const Withdraw = () => {
                 </span>
               </div>
               <div class="justify-self-center">
-                <Link aria-current="page" class="active" to="/">
-                  <img
-                    src={logo1}
-                    class="w-28 p-3 lg:w-36 bg-white self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                  />
-                </Link>
+                <UserIcon />
               </div>
               <div class="py-1">
                 <ToastContainer />

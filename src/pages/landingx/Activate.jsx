@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from "./Navx";
+import logo from "../../images/blockchain.png";
+
 import bultpay from "../../images/bultpay3.png";
 
 
@@ -12,11 +14,9 @@ function Activate() {
         <div className="lg:mx-auto  w-full lg:w-10/12  px-3 lg:px-12">
           <div className="flex items-center bg-white_ justify-center">
             <span className="flex items-center w-32 lg:w-36 rounded-md justify-center mb-6">
-              <img
-                src={bultpay}
-                alt="logo"
-                className="w-32 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white"
-              />
+              <div className="w-52 md:w-60">
+                <img src={logo} alt="blockchain tech" />
+              </div>{" "}
             </span>
           </div>
           <div class="mx-16 md:mx-auto pt-2 md:pt-0 font-medium max-h-screen md:h-auto flex flex-col self-center items-center md:mt-6 mb-12">

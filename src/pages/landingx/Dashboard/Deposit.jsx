@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Drawer, Modal } from "antd";
-import bultpay from "../../../images/bultpay3.png";
+import changelly from "../../../images/changelly-light.svg";
+import UserIcon from "../../../components/Nav/UserIcon";
 import { useNavigate, Link } from "react-router-dom";
 import { setToken, setUserDetails } from "../../../Redux/action";
 import { useDispatch } from "react-redux";
@@ -14,6 +15,7 @@ const Deposit = () => {
   let navigate = useNavigate();
 
   const [barcode, setBarcode] = useState("btc");
+  const [code, setCode] = useState("1DUpgnT1q9egDVUxP99AbRa5ufWZTjYVTf");
   const [amt, setAmt] = useState("");
   const [open, setOpen] = useState(false);
   const [placement, setPlacement] = useState("left");
@@ -33,20 +35,23 @@ const Deposit = () => {
 
   const onCoinChange = (e) => {
     const { value } = e.target;
-    console.log({ value, a: barcode });
+    console.log({ value, a: code });
 
     if (value == "btc") {
       setBarcode("btc");
+      setCode("1DUpgnT1q9egDVUxP99AbRa5ufWZTjYVTf");
     } else if (value == "eth") {
       setBarcode("eth");
-    } else if (value == "usdc") {
-      setBarcode("usdc");
+      setCode("TRXNbWfTLrw7ybVR1e8sbH1sBWWtcvzm5L");
+    } else if (value == "usdt") {
+      setBarcode("usdt");
+      setCode("TRXNbWfTLrw7ybVR1e8sbH1sBWWtcvzm5L");
     } else if (value == "bank") {
       showBank();
     }
   };
   const notifier = () => toast("Copied!");
-  
+
   const user = useSelector((state) => state.auth.user_details);
 
   const { email } = user;
@@ -66,7 +71,7 @@ const Deposit = () => {
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    fetch("https://zany-gold-perch-sock.cyclic.app/deposit", {
+    fetch("https://api.proquoauctions.com/deposit", {
       signal: signal,
     }).then((response) => response.json());
 
@@ -78,7 +83,7 @@ const Deposit = () => {
       return notify("Please provide an amount");
     }
 
-    const res = await fetch("https://zany-gold-perch-sock.cyclic.app/deposit", {
+    const res = await fetch("https://api.proquoauctions.com/deposit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, deposit: amt }),
@@ -125,10 +130,7 @@ const Deposit = () => {
       >
         <div className="w-[93%] pt-6 pl-2.5 default_cursor_cs">
           <p className="flex justify-between py-2">
-            <img
-              src={bultpay}
-              class="w-28 lg:w-36 text-xl font-semibold left-0 whitespace-nowrap text-white"
-            />
+            <UserIcon />
             <svg
               onClick={onClose}
               stroke="currentColor"
@@ -310,12 +312,7 @@ const Deposit = () => {
             }}
           >
             <div className="w-[93%] pt-3 pl-2.5">
-              <Link aria-current="page" class="active" to="/">
-                <img
-                  src={bultpay}
-                  class="w-28 p-3 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                />
-              </Link>
+              <UserIcon />
               <div className="flex items-center justify-between border-y-2 my-2 py-6 px-4 md:hidden">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-blue-600 mr-6">
                   <svg
@@ -523,12 +520,7 @@ const Deposit = () => {
                 </span>
               </div>
               <div class="justify-self-center">
-                <Link aria-current="page" class="active" to="/">
-                  <img
-                    src={bultpay}
-                    class="w-28 p-3 lg:w-36 bg-white self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-                  />
-                </Link>
+                <UserIcon />
               </div>
               <div class="py-1">
                 <p class="rounded-full w-8 h-8 flex justify-center items-center bg-rose-600">
@@ -592,9 +584,9 @@ const Deposit = () => {
                   class="py-1.5 rounded w-72 md:w-80 font-normal mb-4 border mt-1 border-gray-200  text-base"
                 >
                   <option value="btc">Bitcoin</option>
-                  <option value="eth">Ethereum</option>
-                  <option value="bank">Bank</option>
-                  <option value="usdc">USDC</option>
+                  {/* <option value="eth">Ethereum</option> */}
+                  {/* <option value="bank">Bank</option> */}
+                  <option value="usdt">USDT</option>
                 </select>
                 <p class="flex flex-col w-72 md:w-80 lg:w-96 text-base mb-3">
                   <span class="text-sm pb-2 font-normal">Description</span>
@@ -609,6 +601,7 @@ const Deposit = () => {
                 >
                   Continue to Deposit
                 </button>
+
                 <p class="font-medium text-red-600 text-xs md:text-base"></p>
                 <Modal
                   title="Complete Deposit"
@@ -640,13 +633,10 @@ const Deposit = () => {
                         </span>
                       </div>
                       <div class="flex justify-between items-center border-b py-2 border-slate-300 text-sm default_cursor_cs">
-                        <span class="flex text-sm">
-                          {barcode.slice(0, 6)}...
-                        </span>
+                        <span class="flex text-sm">{code.slice(0, 6)}...</span>
                         <CopyToClipboard
-                          text={barcode}
-                          onCopy={() => notify('copied')}
-                          
+                          text={code}
+                          onCopy={() => notify("copied")}
                         >
                           <svg
                             stroke="currentColor"
@@ -662,7 +652,6 @@ const Deposit = () => {
                             <path d="M6 12h6v2H6zm0 4h6v2H6z"></path>
                           </svg>
                         </CopyToClipboard>
-                        
                       </div>
                       <div class="flex justify-between items-center border-b py-2 border-slate-300 text-sm default_cursor_cs">
                         <span>You will send</span>
@@ -680,6 +669,23 @@ const Deposit = () => {
                     >
                       Confirm Pay
                     </button>
+                    <div className="mt-2">
+                      <p className="flex justify-center text-bold text-xl">
+                        OR
+                      </p>
+                      <p className="text-bold text-xl">
+                        Continue to deposit with:
+                      </p>
+                      <div className="flex justify-between my-4">
+                        <a href="https://changelly.com/buy" className="">
+                          <img
+                            src={changelly}
+                            alt="changelly"
+                            className="bg-black p-2 rounded-lg w-32"
+                          />
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </Modal>
                 <Modal

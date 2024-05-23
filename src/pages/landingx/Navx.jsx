@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import bultpay3 from "../../images/bultpay3.png";
 
-const Nav = () => {
+import React, { useState } from "react";
+import { Button, Drawer, Radio, Space } from "antd";
+import { CgMenuGridO, CgMenu } from "react-icons/cg";
+import { AiFillHome } from "react-icons/ai";
+import logo from "../../images/blockchain.png";
+import { Link } from "react-router-dom";
+import Icon from "../../components/Nav/Icon";
+
+const Header = () => {
   const [showMenu, setShowMenu] = useState("hidden");
 
   const toggleMenu = () => {
@@ -12,156 +17,127 @@ const Nav = () => {
       setShowMenu("hidden");
     }
   };
-
+  const [open, setOpen] = useState(false);
+  const [placement, setPlacement] = useState("left");
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  const onChange = (e) => {
+    setPlacement(e.target.value);
+  };
   return (
-    <div>
-      <nav
-        className="lg:px-32 flex px-2 sm:px-4 py-5 fixed w-full z-20 top-0 left-0 "
-        style={{ background: "rgba(22, 22, 26, 0.7)" }}
-      >
-        <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <Link to="/" className="flex items-center">
-            <img
-              src={bultpay3}
-              alt="bult"
-              className="p-2 w-28 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-            />
-          </Link>
-          <div className="hidden md:flex md:order-2">
-            <Link to="/public/register" className="">
-              <button
-                type="button"
-                className="text-black bg-[#fc5b3f] tracking-wide rounded-lg text-xs px-5 py-3 text-center mr-3 md:mr-0 font-medium"
-              >
-                CREATE ACCOUNT
-              </button>
-            </Link>
-            <button
-              data-collapse-toggle="navbar-sticky"
-              type="button"
-              className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="navbar-sticky"
-              aria-expanded="false"
-            >
-              <span className="sr-only">Open main menu</span>
-            </button>
-          </div>
-          <div
-            className="hidden justify-between items-center flex-1 w-full md:flex md:w-auto md:order-1"
-            id="navbar-sticky"
+    <div className="sticky top-0 bg-gray-800 text-white z-10 flex justify-between pr-5 md:pr-0 md:px-7 shadow-md shadow-slate-800 md:pb-5">
+      <div className="md:mt-3 md:pl-20 pl-5 md:py-0 py-3">
+        <Icon />
+      </div>
+
+      <div className=" hidden md:flex text-white justify-between w-[30rem] md:pt-8">
+        <Link to="/">Home</Link>
+        <Link to="/public/contact">Contact</Link>
+        <Link to="/public/pricing">Pricing</Link>
+        <Link to="/">Stock Market</Link>
+      </div>
+
+      <div className=" hidden md:flex gap-10 md:pt-6 text-white uppercase">
+        <div className="bg-[#3f51b5] px-5 rounded-md h-fit py-2">
+          <Link to="/public/register">Sign-in</Link>
+        </div>
+        <div className="bg-[#3f51b5] px-5 rounded-md h-fit py-2">
+          <Link to="/public/login">Login</Link>
+        </div>
+      </div>
+
+      <div className="md:hidden flex">
+        <div className="mt-5" onClick={showDrawer}>
+          <CgMenu size={40} />
+        </div>
+        <div className="">
+          {/* <Space>
+            <Radio.Group value={placement} onChange={onChange}>
+              <Radio value="top">top</Radio>
+              <Radio value="right">right</Radio>
+              <Radio value="bottom">bottom</Radio>
+              <Radio value="left">left</Radio>
+            </Radio.Group>
+            <Button type="primary" onClick={showDrawer}>
+              Open
+            </Button>
+          </Space> */}
+          <Drawer
+            placement={placement}
+            closable={false}
+            onClose={onClose}
+            open={open}
+            key={placement}
           >
-            <ul className="flex flex-col p-4 mt-4 lg:ml-24 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0">
-              <li>
-                <Link
-                  to="/"
-                  className="pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
+            <div className="pt-5 text-black">
+              <div className="flex border-b border-gray-300 gap-10 w-full py-5">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/">
                   Home
                 </Link>
-              </li>
-              <li>
-                <Link
-                  to="/public/about"
-                  className="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  About
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/public/contact">
+                  Contact Us
                 </Link>
-              </li>
-              <li>
-                <Link
-                  to="/public/contact"
-                  className=" block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Contact
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/public/pricing">
+                  Plans
                 </Link>
-              </li>
-              <li>
-                <Link
-                  to="/public/markets"
-                  className="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Markets
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/">
+                  Stock Market
                 </Link>
-              </li>
-              <li>
-                <Link
-                  to="/user/T&C"
-                  className="block py-2 pr-4 pl-3 text-gray-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Terms
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/">
+                  NFT Marketplace
                 </Link>
-              </li>
-            </ul>
-          </div>
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/public/policy">
+                  AML & KYC
+                </Link>
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-8">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/">
+                  Privacy Policy
+                </Link>
+              </div>
+              <div className="flex border-b border-gray-300 gap-10 w-full py-5">
+                <AiFillHome className="text-gray-500 ml-5 mt-2" size={20} />
+                <Link className="text-2xl" to="/">
+                  Payment Policy
+                </Link>
+              </div>
+            </div>
+            <div className="flex flex-col justify-center gap-5 pt-5 md:mt-10">
+              <button className="uppercase bg-[#3f51b5] text-white px-5 py-3">
+                <Link to="/public/register">SIGN IN </Link>
+              </button>
+
+              <button className="uppercase bg-[#3f51b5] text-white px-5 py-3">
+                {" "}
+                <Link to="/public/login">LOGIN </Link>
+              </button>
+            </div>
+          </Drawer>
         </div>
-        <div>
-          <span
-            onClick={toggleMenu}
-            tabIndex="0"
-            className="btn btn-ghost btn-circle md:hidden"
-          >
-            <svg
-              xmlns="http://www.w3.org.2000/svg"
-              className="h-5 w-5 e text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-width="2"
-                d="M4 6h1 16M4 12h16M4 18h7"
-              />
-            </svg>
-          </span>
-        </div>
-        <div
-          className={`${showMenu} flex flex-col justify-center pl-6 tracking-wide text-white font-semibold text-xl absolute top-0 left-0 bg-black h-screen w-screen backdrop-blur-sm opacity-100 z-50`}
-          style={{ background: "rgba(22, 22, 26, 0.7)" }}
-        >
-          <span onClick={toggleMenu} className="bg-red-200">
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              strokeWidth="0"
-              viewBox="0 0 512 512"
-              className="absolute right-4 top-4"
-              height="20"
-              width="20"
-              xmlns="http://www.w3.org.2000/svg"
-            >
-              <path d="M400 145.49L366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49z" />
-            </svg>
-          </span>
-          <Link aria-current="page" className="text-white active" to="/">
-            Home
-          </Link>
-          <Link
-            className="py-4 text-white active:text-secondary"
-            to="/public/about"
-            style={{ color: "white" }}
-          >
-            About
-          </Link>
-          <Link className="" to="/public/contact" style={{ color: "white" }}>
-            Contact
-          </Link>
-          <Link
-            className="py-4"
-            to="/public/markets"
-            style={{ color: "white" }}
-          >
-            Market
-          </Link>
-          <button className="flex w-[70%] p-2 font-normal justify-center text-sm uppercase bg-secondary rounded-md shadow-xl">
-            <Link to="/public/login" style={{ color: "white" }}>
-              Log in
-            </Link>
-          </button>
-        </div>
-      </nav>
+      </div>
     </div>
   );
 };
 
-export default Nav;
+export default Header;

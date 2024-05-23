@@ -14,7 +14,7 @@ const AllUsers = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("https://zany-gold-perch-sock.cyclic.app/users", {
+    fetch("https://api.proquoauctions.com/users", {
       method: "get",
       headers: { "Content-Type": "application/json" },
     })

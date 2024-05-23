@@ -18,7 +18,7 @@ import Homex from "./pages/landingx/Homex";
 import "react-toastify/dist/ReactToastify.css";
 import About from "./pages/landingx/Aboutx";
 import Contact from "./pages/landingx/Contactx";
-import Market from "./pages/landingx/Marketsx";
+import Market from "./pages/landingx/Pricing";
 import Loginx from "./pages/landingx/Loginx";
 import Registerx from "./pages/landingx/Registerx";
 import Activate from "./pages/landingx/Activate";
@@ -36,6 +36,10 @@ import TC from "./pages/landingx/Dashboard/T&C";
 import BtcWld from "./pages/landingx/Dashboard/BtcWld";
 import { useSelector } from "react-redux";
 import UsdcWld from "./pages/landingx/Dashboard/UsdcWld";
+import PaypalWld from "./pages/landingx/Dashboard/PaypalWld";
+import Help from "./pages/landingx/helpers/Help";
+import Pricing from "./pages/landingx/Pricing";
+
 
 const App = () => {
   const { email } = useSelector((state) => state.auth.user_details);
@@ -45,9 +49,9 @@ const App = () => {
     <div className="">
       <Routes>
         <Route path="/" element={<Homex />} />
-        <Route path="public/about" element={<About />} />
+        <Route path="public/policy" element={<About />} />
         <Route path="public/contact" element={<Contact />} />
-        <Route path="public/markets" element={<Market />} />
+        <Route path="public/pricing" element={<Pricing />} />
         <Route path="/public/login" element={<Loginx />} />
         <Route path="/public/register" element={<Registerx />} />
         <Route path="/public/activate" element={<Activate />} />
@@ -68,6 +72,8 @@ const App = () => {
         <Route path="/user/T&C" element={<TC />} />
         <Route path="/user/btc/withdrawal" element={<BtcWld />} />
         <Route path="/user/usdc/withdrawal" element={<UsdcWld />} />
+        <Route path="/user/paypal/withdrawal" element={<PaypalWld />} />
+        <Route path="/public/helpers" element={<Help />} />
 
         {/* <Route path="/collections" element={<Collections />} />
             <Route path="/login" element={<SignIn />} />

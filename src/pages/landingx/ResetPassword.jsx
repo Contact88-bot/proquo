@@ -1,5 +1,6 @@
 import React from 'react';
-import bultpay from "../../images/bultpay3.png";
+import logo from "../../images/blockchain.png";
+import UserIcon from "../../components/Nav/UserIcon";
 
 const ResetPassword = () => {
   return (
@@ -7,11 +8,9 @@ const ResetPassword = () => {
       <div class="flex flex-col bg-[#26313f3a] shadow-md rounded text-slate-700 items-center h-screen px-3 justify-center bg-reed pt-3 w-full default_cursor_cs">
         <div class="lg:mx-auto w-full lg:w-10/12 px-3 lg:px-12 default_cursor_cs">
           <div class="flex items-center text-secondary justify-center ">
-            <img
-              src={bultpay}
-              alt="bultpay"
-              class="w-28 lg:w-48 mb-6 self-center text-xl font-semibold whitespace-nowrap text-white mr-12"
-            />
+            <div className="w-52 md:w-60">
+              <img src={logo} alt="blockchain tech" />
+            </div>{" "}
           </div>
           <div class=" w-full mx-auto pt-2 mt-12 md:pt-0 max-h-screen md:h-auto flex flex-col self-center items-center md:mt-6 mb-12">
             <div class="bg-white pt-8 sm:max-w-sm w-full pb-4 md:pb-0 default_cursor_cs">

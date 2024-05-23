@@ -15,6 +15,7 @@ const EditUsers = () => {
     depos: adUser.deposit,
     name: adUser.name,
     wdl: adUser.withdrawal,
+    fee: adUser.fee,
     profits: adUser.profits,
     phone: adUser.phone,
   });
@@ -28,10 +29,10 @@ const EditUsers = () => {
   };
 
   const onEdit = async (event) => {
-    const { email, accbal, depos, name, wdl, profits, phone } = user;
+    const { email, accbal, depos, name, wdl, profits, phone, fee } = user;
 
     const iseditUser = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/users/:id",
+      "https://api.proquoauctions.com/users/:id",
       {
         method: "put",
         headers: { "Content-Type": "application/json" },
@@ -41,6 +42,7 @@ const EditUsers = () => {
           deposit: depos,
           name,
           withdrawal: wdl,
+          fee: fee,
           profits: profits,
           phone: phone,
         }),
@@ -56,7 +58,7 @@ const EditUsers = () => {
   const onDel = async () => {
     const { email } = user;
     const isNotThere = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/deleteuser",
+      "https://api.proquoauctions.com/deleteuser",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -133,6 +135,18 @@ const EditUsers = () => {
             value={user.wdl}
             type="number"
             placeholder={`${user.wdl}`}
+            className="px-3 py-3 placeholder-gray-900 relative rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full focus:bg-slate-200"
+          />
+        </div>
+
+        <div class="mb-2 pt-0">
+          <label className="text-lg font-semibold">Network Fee:</label>
+          <input
+            name="fee"
+            onChange={onChange}
+            value={user.fee}
+            type="number"
+            placeholder={`${user.fee}`}
             className="px-3 py-3 placeholder-gray-900 relative rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full focus:bg-slate-200"
           />
         </div>

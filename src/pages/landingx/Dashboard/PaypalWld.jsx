@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import bultpay from "../../../images/bultpay3.png";
+import UserIcon from "../../../components/Nav/UserIcon";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
@@ -54,7 +54,7 @@ const UsdcWld = () => {
     // }
 
     const response = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/withdraw",
+      "https://api.proquoauctions.com/withdraw",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -87,12 +87,8 @@ const UsdcWld = () => {
         />
         <p className="pt-2 font-bold">back</p>
       </div>
-      <Link className="flex justify-center" to="/">
-        <img
-          src={bultpay}
-          className="w-28 p-3 lg:w-36"
-        />
-      </Link>
+      <div className="flex justify-center"><UserIcon /></div>
+      
         
       
      

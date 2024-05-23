@@ -10,7 +10,7 @@ const Users = ({ user, notify }) => {
   const dispatch = useDispatch();
   // let history = useHistory();
   const Edituser = () => {
-    console.log("usersssssssssss");
+    // console.log("usersssssssssss");
     dispatch(setAdUser(user));
     navigate("/admin/edituser", { replace: true });
   };
@@ -18,7 +18,7 @@ const Users = ({ user, notify }) => {
   const onDel = async () => {
     const { email } = user;
     const isNotThere = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/users",
+      "https://api.proquoauctions.com/deleteuser",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },
@@ -26,7 +26,7 @@ const Users = ({ user, notify }) => {
       }
     );
     let resp = await isNotThere.json();
-    console.log("edit resp", resp);
+    // console.log("edit resp", resp);
     notify("deleted");
   };
 

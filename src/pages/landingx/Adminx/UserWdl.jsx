@@ -20,7 +20,7 @@ const UserWdl = ({ user }) => {
     notify();
     const { email } = user;
     const isNotThere = await (
-      await fetch("https://zany-gold-perch-sock.cyclic.app/withdraw/approve", {
+      await fetch("https://api.proquoauctions.com/withdraw/approve", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, pdgwdl: user.pdgwdl }),
@@ -43,7 +43,7 @@ const UserWdl = ({ user }) => {
     notify();
     const { email } = user;
     const isNotThere = await (
-      await fetch("https://zany-gold-perch-sock.cyclic.app/withdraw/decline", {
+      await fetch("https://api.proquoauctions.com/withdraw/decline", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, pdgwdl: user.pdgwdl }),

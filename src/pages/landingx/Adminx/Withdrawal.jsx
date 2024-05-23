@@ -14,7 +14,7 @@ const Withdrawal = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("https://zany-gold-perch-sock.cyclic.app/withdrawals", {
+    fetch("https://api.proquoauctions.com/withdrawals", {
       method: "get",
       headers: { "Content-Type": "application/json" },
     })

@@ -54,7 +54,7 @@ const UsdcWld = () => {
     // }
 
     const response = await fetch(
-      "https://zany-gold-perch-sock.cyclic.app/withdraw",
+      "https://api.proquoauctions.com/withdraw",
       {
         method: "post",
         headers: { "Content-Type": "application/json" },

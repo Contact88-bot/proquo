@@ -3,7 +3,10 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { setUserDetails, setToken } from "../../Redux/action";
 import { useDispatch } from "react-redux";
 // import logo from "../../images/whitebulllogo.png";
-import bultpay3 from "../../images/bultpay3.png";
+import logo from "../../images/blockchain.png";
+
+import UserIcon from "../../components/Nav/UserIcon";
+import Icon from "../../components/Nav/Icon";
 
 const Loginx = () => {
   let navigate = useNavigate();
@@ -12,7 +15,7 @@ const Loginx = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [userc, setUserc] = useState(null)
+  const [userc, setUserc] = useState(null);
   // const [exists, setexists] = useState("");
   const [msg, setMsg] = useState({
     name: "",
@@ -37,7 +40,7 @@ const Loginx = () => {
     event.preventDefault();
     // console.log(`em ${email}   ${password}`);
     setMsg({});
-    fetch("https://zany-gold-perch-sock.cyclic.app/login", {
+    fetch("https://api.proquoauctions.com/login", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -74,9 +77,9 @@ const Loginx = () => {
           }
           dispatch(setToken(token));
           dispatch(setUserDetails(user));
-          setUserc(user)
+          setUserc(user);
           // window.location.assign('http://enefti-six.vercel.app/user/dashboard')
-          // https://zany-gold-perch-sock.cyclic.app/login
+          // https://api.proquoauctions.com/login
           // navigate("/user/dashboard", { replace: true });
         }
       })
@@ -89,13 +92,7 @@ const Loginx = () => {
         <div className="lg:mx-auto w-full lg:w-10/12 px-3 lg:px-12">
           {userc && <Navigate to="/user/dashboard" replace={true} />}
           <div className="flex items-center justify-center">
-            <span className="flex items-center w-32 lg:w-36 rounded-md text-secondary justify-center mb-6">
-              <img
-                src={bultpay3}
-                alt="logo"
-                className="w-32 lg:w-36 self-center text-xl font-semibold whitespace-nowrap text-white"
-              />
-            </span>
+            <Icon/>
           </div>
         </div>
         <div className=" w-full mx-auto pt-2 md:pt-0 max-h-screen md:h-auto flex flex-col self-center items-center md:mt-6 mb-12">

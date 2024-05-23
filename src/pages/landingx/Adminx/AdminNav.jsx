@@ -1,7 +1,7 @@
 import React from "react";
 import { MenuOutlined } from "@ant-design/icons";
 import { Dropdown, Space } from "antd";
-import logo1 from "../../../images/bultpay3.png";
+import UserIcon from "../../../components/Nav/UserIcon";
 import { Link } from "react-router-dom";
 
 const AdminNav = () => {
@@ -47,12 +47,7 @@ const AdminNav = () => {
           </Dropdown>
         </div>
         <div>
-          <img
-            src={logo1}
-            alt="jpg"
-            className="w-36 lg:w-56 self-center text-xl font-semibold whitespace-nowrap text-white lg:mr-6 default_pointer_cs"
-            // style={{ height: "90px", width: "250px", minWidth: "150px" }}
-          />
+          <UserIcon />
         </div>
         <div>
           <button class="btn btn-ghost btn-circle default_pointer_cs">
